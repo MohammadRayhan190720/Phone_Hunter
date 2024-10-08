@@ -1,4 +1,4 @@
-const loadAllPhones = async() =>{
+const loadAllPhones = async(status) =>{
 
   document.getElementById("spinner").style.display = "none";
 
@@ -9,8 +9,26 @@ const loadAllPhones = async() =>{
 
   const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=iphone`);
   const data = await res.json();
-  console.log(data.data);
+
+  if (status){
+    displayAllPhones(data.data);
+    
+  }else{
+
+    displayAllPhones(data.data.slice(0,6));
+  }
+
 }
+
+const displayAllPhones = (phones) =>{
+  console.log(phones)
+}
+
+
+const handleShowAll = () => {
+  loadAllPhones(true);
+  
+};
 
 
 
