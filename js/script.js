@@ -71,17 +71,20 @@ const handleSearch = () => {
 
 };
 
-const loadDatails =async (slug) =>{
+const showDatails = async (slug) =>{
   const res = await fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
   const data = await res.json();
   console.log(data.data);
+  const { brand, releaseDate, name, image,USB } = data.data;
   
     const modalContainer = document.getElementById("modal-container");
     modalContainer.innerHTML = `
    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
-    <h3 class="text-lg font-bold"></h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
+    <h3 class="text-lg font-bold">${brand}</h3>
+    <p class="py-4">${releaseDate}</p>
+    <p >${name}</p>
+    <p >${data.data.others.USB}</p>
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
